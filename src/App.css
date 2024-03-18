@@ -1,0 +1,51 @@
+/* * {
+  scroll-behavior: smooth;
+  transition: all 0.2s ease-in;
+} */
+
+.home_bg {
+  background: url(./assets/Postit_home_bg.svg);
+  /* color: #808080d1; */
+}
+
+.get_started_bg {
+  background: url(./assets/get_started_bg.svg);
+  /* color: #80808073; */
+}
+
+.line::before {
+  content: "";
+}
+
+.scrollable-div {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollable-div::-webkit-scrollbar {
+  display: none;
+}
+
+.line::after {
+  content: "";
+  background-color: black;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.line:focus::after,
+.line:hover::after {
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.line {
+  position: relative;
+  transition: all 0.4;
+}
