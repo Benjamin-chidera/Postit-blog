@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 
 const user = Cookies.get("user");
 
-
 export const getData = async () => {
   const res = await axios.get(
     "https://postit-server.onrender.com/api/v1/posts"
@@ -26,12 +25,11 @@ export const getAPost = async (id) => {
 };
 
 export const getAuthorsPost = async () => {
-
   try {
     const res = await axios.get(
       `https://postit-server.onrender.com/api/v1/posts/author`,
       {
-        headers: {Authorization: `Bearer ${user}`}
+        headers: { Authorization: `Bearer ${user}` },
       }
     );
     return res.data;
@@ -98,7 +96,10 @@ export const getCommentsPost = async (id) => {
 
 export const deleteComment = async (id) => {
   const res = await axios.delete(
-    `https://postit-server.onrender.com/api/v1/posts/comments/${id}`
+    `https://postit-server.onrender.com/api/v1/posts/comments/${id}`,
+    {
+      headers: { Authorization: `Bearer ${user}` },
+    }
   );
   return res.data;
 };

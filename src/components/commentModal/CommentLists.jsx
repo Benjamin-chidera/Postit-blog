@@ -6,12 +6,23 @@ import { deleteComment, getCommentsPost } from "../../data/axios";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BounceLoader } from "react-spinners";
+import { jwtDecode } from "jwt-decode";
+
+
 
 export const CommentLists = () => {
   const queryClient = useQueryClient();
   const { storyId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
+  const user = Cookies.get("user");
 
+  let decode = null;
+
+  if (user) {
+    decode = jwtDecode(user);
+  }
+
+  console.log(decode, storyId);
   // get all comments
   const { data, isLoading } = useQuery({
     queryKey: ["comment", storyId],
