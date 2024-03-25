@@ -7,6 +7,8 @@ import ReactPaginate from "react-paginate";
 import { getData } from "../../data/axios";
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Feed = () => {
   const { data, error, isLoading } = useQuery({
@@ -61,7 +63,9 @@ const Feed = () => {
                     <span className="px-4 h-7 rounded-md  text-white-100 bg-blue-500 absolute start-4 bottom-4">
                       {tags}
                     </span>
-                    <img
+                    <LazyLoadImage
+                      loading="lazy"
+                      effect="blur"
                       src={image}
                       alt=""
                       className="w-[250px] h-[200px] md:w-[350px] md:h-[300px] lg:w-[450px] object-cover rounded-lg"
@@ -73,7 +77,9 @@ const Feed = () => {
                   </h2>
 
                   <div className="flex items-center gap-3">
-                    <img
+                    <LazyLoadImage
+                      loading="lazy"
+                      effect="blur"
                       src={author?.image}
                       alt=""
                       className=" w-6 h-6 object-cover"

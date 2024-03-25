@@ -1,23 +1,22 @@
 import { Button } from "@material-tailwind/react";
-import React from "react";
-// import { MdEditLocationAlt } from "react-icons/md";
+import React, { useState, useEffect } from "react";
 import { FaTrashRestoreAlt } from "react-icons/fa";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { deleteComment, getCommentsPost } from "../../data/axios";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
-// import { jwtDecode } from "jwt-decode";
 import { BounceLoader } from "react-spinners";
-import { jwtDecode } from "jwt-decode";
 
 export const CommentLists = () => {
   const queryClient = useQueryClient();
   const { storyId } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
 
   // get all comments
   const { data, isLoading } = useQuery({
     queryKey: ["comment", storyId],
     queryFn: () => getCommentsPost(storyId),
+    enabled: isOpen, // Only fetch data when modal is open
     refetchOnWindowFocus: true,
   });
 
@@ -30,6 +29,10 @@ export const CommentLists = () => {
   const handleDeleteComment = async (id) => {
     await mutateAsync(id);
   };
+
+  useEffect(() => {
+    setIsOpen(true); // Open the modal and trigger data fetch
+  }, []);
 
   return (
     <main className=" space-y-5">
@@ -57,14 +60,7 @@ export const CommentLists = () => {
               </div>
             </div>
 
-            <div
-              className="flex items-center gap-2 
-        "
-            >
-              {/* <Button size="sm">
-                <MdEditLocationAlt />
-              </Button> */}
-
+            <div className="flex items-center gap-2">
               <Button
                 size="sm"
                 onClick={() => handleDeleteComment(comments._id)}

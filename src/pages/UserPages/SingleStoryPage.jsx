@@ -6,7 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getAPost } from "../../data/axios";
 import { SingleStoriesLoader } from "../../components/Loader/SigleStoriesLoader";
 import { Comment } from "../../components/commentModal/Comment";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const SingleStoryPage = () => {
   const { storyId } = useParams();
@@ -28,7 +29,9 @@ const SingleStoryPage = () => {
           </span>
           <h2 className="font-heading font-bold text-6xl max-w-[956px]"></h2>
           <div className="flex items-center gap-3">
-            <img
+            <LazyLoadImage
+              loading="lazy"
+              effect="blur"
               src={data?.post?.author?.image}
               alt=""
               className=" w-8 rounded-full h-8 object-cover"
@@ -40,10 +43,12 @@ const SingleStoryPage = () => {
           </div>
           <hr className="bg-grey-100" />
           <div className="w-full">
-            <img
+            <LazyLoadImage
+              loading="lazy"
+              effect="blur"
               src={data?.post?.image}
               alt=""
-              className="w-full h-[300px] object-cover cur"
+              className="w-screen h-[300px] object-cover cur"
             />
           </div>
 

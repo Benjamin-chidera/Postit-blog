@@ -3,6 +3,8 @@ import stories_img from "../../assets/stories_page.svg";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Welcomepage = () => {
   const navigate = useNavigate();
@@ -44,7 +46,9 @@ const Welcomepage = () => {
           </div>
         </div>
 
-        <img
+        <LazyLoadImage
+          loading="lazy"
+          effect="blur"
           src={stories_img}
           alt=""
           className="h-[200px] w-[500px] md:h-[300px] md:w-[700px] lg:h-[300px]"

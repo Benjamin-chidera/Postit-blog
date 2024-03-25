@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getLatestData } from "../../data/axios";
 import { Loader1 } from "../Loader/Loader1";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const RecentStories = () => {
   const { data, isLoading, error } = useQuery({
@@ -24,7 +26,9 @@ const RecentStories = () => {
                 className="flex md:flex-col lg:flex-row items-center lg:justify-center gap-3 max-w-full w-96"
                 key={r._id}
               >
-                <img
+                <LazyLoadImage
+                  loading="lazy"
+                  effect="blur"
                   src={r.image}
                   alt=""
                   className=" w-28 md:w-40 h-32 object-cover rounded-md mt-3 md:mt-0"

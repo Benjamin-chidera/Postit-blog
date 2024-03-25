@@ -41,6 +41,7 @@ export const Comment = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comment"] });
       reset();
+      
       setOpen(false);
     },
   });
