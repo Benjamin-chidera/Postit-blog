@@ -5,28 +5,34 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
+import React, { lazy, Suspense } from "react";
+
 import "./App.css";
 import RootLayout from "./layout/RootLayout";
-import Homepage from "./pages/Homepage";
-import SignUp from "./pages/SignUp";
-import Welcomepage from "./pages/UserPages/Welcomepage";
-import Storyfeedpage from "./pages/UserPages/Storyfeedpage";
-import SingleStoryPage from "./pages/UserPages/SingleStoryPage";
-import UserStories from "./pages/UserPages/UserStories";
 import { EditPost } from "./pages/UserPages/EditPost";
 import { CreateStories } from "./pages/UserPages/CreateStories";
 import { Private } from "./components/Private/Private";
+import { Error } from "./pages/Error";
+import { PageLoader } from "./components/Loader/PageLoader";
 
-// import ErrorPage from "./pages/404/ErrorPage";
+const Home = React.lazy(() => import("./pages/Homepage"));
+const Welcome = React.lazy(() => import("./pages/UserPages/Welcomepage"));
+const Storyfeedpage = React.lazy(() =>
+  import("./pages/UserPages/Storyfeedpage")
+);
+const SingleStoryPage = React.lazy(() =>
+  import("./pages/UserPages/SingleStoryPage")
+);
+const UserStories = React.lazy(() => import("./pages/UserPages/UserStories"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<RootLayout />}>
-        <Route index path="/" element={<Homepage />} />
+        <Route path="/" element={<Home />} />
 
         <Route element={<Private />}>
-          <Route path="/welcome" element={<Welcomepage />} />
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/stories" element={<Storyfeedpage />} />
           <Route path="/createStories" element={<CreateStories />} />
 
@@ -36,13 +42,23 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      {/* <Route path="*" element={<ErrorPage />} /> */}
+      <Route path="*" element={<Error />} />
     </>
   )
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense
+      fallback={
+        <div>
+          <PageLoader />
+        </div>
+      }
+    >
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;
