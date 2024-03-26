@@ -55,11 +55,11 @@ export const Logout = () => {
           <Link to="/welcome">Stories</Link>
         </li>
 
-        <li className=" lg:hidden text-black">
+        {/* <li className=" lg:hidden text-black">
           <Scroll to="contact" className="cursor-pointer">
             Contact
           </Scroll>
-        </li>
+        </li> */}
       </MenuList>
       {/* <MenuList className=" min-w-[110px]"></MenuList> */}
       {/* <MenuList className=" min-w-[110px]">

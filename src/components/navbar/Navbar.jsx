@@ -40,11 +40,11 @@ const Navbar = () => {
               <li>
                 <Link to="/welcome">Stories</Link>
               </li>
-              <li>
+              {/* <li>
                 <Scroll to="contact" className="cursor-pointer">
                   Contact
                 </Scroll>
-              </li>
+              </li> */}
               {!user && (
                 <li>
                   <Link onClick={() => setShowLogin(true)}>Sign In</Link>

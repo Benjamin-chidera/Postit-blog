@@ -60,7 +60,8 @@ const Feed = () => {
                   className=" flex flex-col gap-4 justify-center w-[250px] lg:w-[300px] xl:w-[350px] mx-auto"
                 >
                   <div className="relative">
-                    <span className="px-4 h-7 rounded-md  text-white-100 bg-blue-500 absolute start-4 bottom-4">
+                    <span className="px-4 h-7 rounded-md  text-white-100 bg-blue-500 absolute start-4 bottom-4 
+                     z-10">
                       {tags}
                     </span>
                     <LazyLoadImage

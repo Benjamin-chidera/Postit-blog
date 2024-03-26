@@ -3,6 +3,10 @@
   transition: all 0.2s ease-in;
 } */
 
+body{
+  overflow-x: hidden;
+}
+
 .home_bg {
   background: url(./assets/Postit_home_bg.svg);
   /* color: #808080d1; */

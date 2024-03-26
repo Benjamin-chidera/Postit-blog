@@ -44,8 +44,8 @@ const Login = () => {
   };
 
   return (
-    <div className=" h-screen bg-white-200 bg-opacity-80 fixed top-0 right-0 w-full z-50">
-      <div className="h-full flex flex-col bg-white-100 shadow-lg max-w-[653px] p-5 mx-auto">
+    <div className=" h-screen bg-white-200 bg-opacity-80 fixed top-0 right-0 w-full z-50 overflow-y-scroll lg:overflow-y-hidden">
+      <div className="h-full flex flex-col bg-white-100 shadow-lg w-[653px] p-5 mx-auto max-w-full">
         <span
           className=" self-end me-5 cursor-pointer"
           onClick={() => setShowLogin(false)}
@@ -54,7 +54,7 @@ const Login = () => {
         </span>
 
         <form
-          className="flex flex-col self-center mt-32 gap-6  w-[415px]"
+          className="flex flex-col self-center mt-32 gap-6  w-[415px] max-w-full"
           onSubmit={handleSubmit(handleLogin)}
         >
           <h2 className=" text-black-500 text-4xl text-center mb-4 font-heading font-bold">
